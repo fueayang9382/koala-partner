@@ -7,7 +7,7 @@ $( document ).ready( function(){
   // load existing koalas on page load
   getKoalas();
 $('body').on('click', '.deleteKoala', deleteKoala)
-
+$('body').on('click', '.', changeToTransfer)
 }); // end doc ready
 
 function setupClickListeners() {
@@ -69,8 +69,8 @@ function renderKoala(array) {
         <td>${item.gender}</td>
         <td>${item.rtt}</td>
         <td>${item.notes}</td>
-        <td></td>
         <td><button class="deleteKoala">DELETE</button></td>
+        <td></td>
         
       </tr>
     
@@ -83,8 +83,8 @@ function renderKoala(array) {
       <td>${item.gender}</td>
       <td>${item.rtt}</td>
       <td>${item.notes}</td>
-      <td><button class="ready">Change to Yes</button></td>
       <td><button class="deleteKoala">DELETE</button></td>
+      <td><button class="ready">Change to Yes</button></td>
     </tr>
   
   `)
@@ -105,4 +105,9 @@ function deleteKoala(){
   .catch((err)=>{
     console.log('something broke in deleteKoala', err);
   })
+}
+
+
+function (params) {
+  
 }
