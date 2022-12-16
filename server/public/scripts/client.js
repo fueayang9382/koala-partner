@@ -16,11 +16,11 @@ function setupClickListeners() {
     // NOT WORKING YET :(
     // using a test object
     let koalaToSend = {
-      age: 'testName',
-      name: 'testName',
-      gender: 'testName',
-      rtt: 'testName',
-      notes: 'testName',
+      age: $('#ageIn').val(),
+      name:$('#nameIn').val(),
+      gender: $('#genderIn').val(),
+      rtt: $('#readyForTransferIn').val(),
+      notes: $('#notesIn').val()
     };
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
@@ -44,7 +44,22 @@ function getKoalas(){
 
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
+$.ajax({
+  method: 'post',
+  url: '/koalas',
+  data: newKoala
+}).then((res)=>{
+  getKoalas()
+})
+.catch((err)=>{
+  console.log('something broke in saveKoala', err);
+})
+
 }
+
+
+
+
 
 function renderKoala(array) {
   $('#viewKoalas').empty();
