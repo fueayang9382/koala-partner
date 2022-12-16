@@ -61,6 +61,7 @@ $.ajax({
 function renderKoala(array) {
   $('#viewKoalas').empty();
   for (let item of array) {
+    if(item.rtt === 'Y'){
     $('#viewKoalas').append(`
       <tr data-id=${item.id}>
         <td>${item.age}</td>
@@ -68,12 +69,28 @@ function renderKoala(array) {
         <td>${item.gender}</td>
         <td>${item.rtt}</td>
         <td>${item.notes}</td>
+        <td></td>
         <td><button class="deleteKoala">DELETE</button></td>
+        
       </tr>
+    
     `)
+  } else{
+    $('#viewKoalas').append(`
+    <tr data-id=${item.id}>
+      <td>${item.age}</td>
+      <td>${item.name}</td>
+      <td>${item.gender}</td>
+      <td>${item.rtt}</td>
+      <td>${item.notes}</td>
+      <td><button class="ready">Change to Yes</button></td>
+      <td><button class="deleteKoala">DELETE</button></td>
+    </tr>
+  
+  `)
   }
-}//we need to conditional add a button basse off on rtt status.
-
+}
+}
 
 function deleteKoala(){
   console.log('in the delete function');
