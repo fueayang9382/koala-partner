@@ -29,12 +29,34 @@ function setupClickListeners() {
 
 function getKoalas(){
   console.log( 'in getKoalas' );
-  // ajax call to server to get koalas
+  $.ajax({
+    method: 'GET',
+    url: '/koalas'
+  }).then((res)=>{
+    renderKoala(res)
+  })
+  .catch((resErr)=>{
+    console.log('something broke in .ajax get', resErr);
+  })
+}
   
-} // end getKoalas
+// end getKoalas
 
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
-  // ajax call to server to get koalas
- //THIS IS A POST NOT A GET
 }
+
+function renderKoala(array) {
+  $('#viewKoalas').empty();
+  for (let item of array) {
+    $('#viewKoalas').append(`
+      <tr data-id=${item.id}>
+        <td>${item.age}</td>
+        <td>${item.name}</td>
+        <td>${item.gender}</td>
+        <td>${item.rtt}</td>
+        <td>${item.notes}</td>
+      </tr>
+    `)
+  }
+}//we need to conditional add a button basse off on rtt status.

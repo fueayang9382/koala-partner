@@ -1,4 +1,4 @@
-const { Router } = require('express');
+const { Router, application } = require('express');
 const express = require('express');
 const pool = require('../module/pool');
 const koalaRouter = express.Router();
@@ -41,10 +41,6 @@ koalaRouter.post('/', (req,res)=>{
     })
 
 })
-
-
-
-
 
 
 // PUT
