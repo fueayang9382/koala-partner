@@ -16,10 +16,10 @@ function setupClickListeners() {
     // NOT WORKING YET :(
     // using a test object
     let koalaToSend = {
-      name: 'testName',
       age: 'testName',
+      name: 'testName',
       gender: 'testName',
-      readyForTransfer: 'testName',
+      rtt: 'testName',
       notes: 'testName',
     };
     // call saveKoala with the new obejct

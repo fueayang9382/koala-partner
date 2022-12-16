@@ -23,6 +23,28 @@ pool.query(sqlQuery)
     })
 })
 // POST
+koalaRouter.post('/', (req,res)=>{
+    console.log('we are in the koala.Router.post');
+    let sqlQuery = `
+    INSERT INTO "koala"
+    ("age", "name", "gender", "rtt","notes") 
+    VALUES ($1,$2,$3,$4,$5);   `
+
+    let koala = req.body
+    let sqlvalues = [koala.age, koala.name, koala.gender, koala.rtt, koala.notes];
+    pool.query(sqlQuery, sqlvalues)
+    .then((dbRes)=>{
+        res.sendStatus(201);
+    })
+    .catch((dbErr)=>{
+        console.log('something broke in koalaRouter.post', dbErr);
+    })
+
+})
+
+
+
+
 
 
 // PUT
