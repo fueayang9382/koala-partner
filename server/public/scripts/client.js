@@ -6,6 +6,7 @@ $( document ).ready( function(){
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
+$('body').on('click', '.deleteKoala', deleteKoala)
 
 }); // end doc ready
 
@@ -57,10 +58,6 @@ $.ajax({
 
 }
 
-
-
-
-
 function renderKoala(array) {
   $('#viewKoalas').empty();
   for (let item of array) {
@@ -71,7 +68,24 @@ function renderKoala(array) {
         <td>${item.gender}</td>
         <td>${item.rtt}</td>
         <td>${item.notes}</td>
+        <td><button class="deleteKoala">DELETE</button></td>
       </tr>
     `)
   }
 }//we need to conditional add a button basse off on rtt status.
+
+
+function deleteKoala(){
+  console.log('in the delete function');
+  let idToDelete = $(this).parent().parent().data().id;
+  console.log(idToDelete);
+  $.ajax({
+    method: 'DELETE',
+    url: `/koalas/${idToDelete}` 
+  }).then((res)=>{
+    getKoalas();
+  })
+  .catch((err)=>{
+    console.log('something broke in deleteKoala', err);
+  })
+}
