@@ -7,7 +7,7 @@ $( document ).ready( function(){
   // load existing koalas on page load
   getKoalas();
 $('body').on('click', '.deleteKoala', deleteKoala)
-$('body').on('click', '.', changeToTransfer)
+$('body').on('click', '.ready', changeNoStatus)
 }); // end doc ready
 
 function setupClickListeners() {
@@ -108,6 +108,18 @@ function deleteKoala(){
 }
 
 
-function (params) {
-  
-}
+function changeNoStatus() {
+  console.log('we in the changeNoStatus');
+  let idToUpdate = $(this).parent().parent().data().id;
+  console.log(idToUpdate);
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${idToUpdate}`
+  }).then((res)=>{
+    getKoalas();
+  })
+  .catch((err)=>{
+    console.log('something broke in deleteKoala', err);
+  })
+ }
+ 
